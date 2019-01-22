@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<struts-config>
+	<form-beans>
+		<form-bean type="com.payment.form.GeneralInfoForm" name="generalInfo">
+		</form-bean>
+	</form-beans>
+
+	<action-mappings>
+		<action path="/mygeneralinfo" type="com.payment.action.GeneralInfoAction"
+			name="generalInfo" input="/generalinfo.jsp" scope="request">
+			<forward name="error" path="/error.jsp"></forward>
+			<forward name="success" path="/success.jsp"></forward>
+		</action>
+	</action-mappings>
+</struts-config>
