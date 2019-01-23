@@ -46,7 +46,7 @@ h1{
 	border-bottom: solid 1px #009FBF;
 	border-top: solid 1px #1098B3;
 	box-shadow: inset 0px -10px 40px 0px #c0c0c0;
-	width: 1210px;
+	width: 100%;
 }
 
 #nav ul li {
