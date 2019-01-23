@@ -13,7 +13,11 @@
 <body>
  <center>
   <div class="container">
-  <h1>Registration From</h1>
+  <header>
+    <img align="left" id="logo" src="images/unilogo.png"/>
+    <h1>PAYMENT BILLING SYSTEM</h1>
+  </header>
+  <h2 style="align:center">REGISTRATION FORM</h2>
     <html:form action="/mygeneralinfo" method="POST">
     
      <table>
@@ -33,8 +37,8 @@
       </tr>
       
       <tr> 
-       <td><html:submit value="Submit" property="send"></html:submit></td>
-       <td><html:cancel></html:cancel></td>
+       <td><html:submit style="width:100%" value="Register" property="send"></html:submit></td>
+       <td><html:cancel style="width:100%"></html:cancel></td>
       </tr>
       </table>
     </html:form>

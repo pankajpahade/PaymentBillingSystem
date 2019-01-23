@@ -23,7 +23,7 @@
 	
 		<header>
 		    <img align="left" id="logo" src="images/unilogo.png"/>
-		    <a  href="login.jsp" id="link" >Student LogIn</a>
+		    <a  href="studentlogin.jsp" id="link" >Student LogIn</a>
 			<h1>PAYMENT BILLING SYSTEM</h1>
 		</header>
 		
