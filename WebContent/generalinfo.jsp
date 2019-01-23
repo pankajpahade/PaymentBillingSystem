@@ -18,23 +18,8 @@
     
      <table>
       <tr> 
-       <td>First Name :</td>
-       <td class="myinput"><html:text property="firstname" styleClass="form-info" styleId="abc"></html:text></td>
-      </tr> 
-      
-      <tr> 
-       <td>Last Name  :</td>
-       <td class="myinput"><html:text property="lastname"></html:text></td>
-      </tr>
-      
-      <tr>
-       <td>Email ID   :</td>
-       <td class="myinput"><html:text property="email"></html:text></td>
-      </tr>
-      
-      <tr> 
-       <td>Mobile No. :</td>
-       <td class="myinput"><html:text property="username"></html:text></td>
+       <td>Enrollment Number :</td>
+       <td class="myinput"><html:text property="enrollment"></html:text></td>
       </tr>
       
       <tr> 

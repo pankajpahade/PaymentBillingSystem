@@ -32,18 +32,15 @@ public class GeneralInfoAction extends Action {
         generalInfo.setUsername(formBean.getUsername());
         generalInfo.setPassword(formBean.getPassword());*/
 		
-String sql = "insert into generalinfo (firstname, lastname, email, username, password) values(?, ?, ?, ?, ?)";
+String sql = "insert into generalinfo (enrollment, password) values(?, ?)";
 		
-		String firstname = formBean.getFirstname();
-		String lastname = formBean.getLastname();
-		String email = formBean.getEmail();
-		String username = formBean.getUsername();
+		String enrollment = formBean.getEnrollment();
 		String password = formBean.getPassword();
 		String confirmPassword = formBean.getConfirmPassword();
 		
 		if (password.equals(confirmPassword)) {
 			
-			if (firstname.isEmpty() || lastname.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+			if (enrollment.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
 				status="error";
 			} else {
 				try {
@@ -51,11 +48,8 @@ String sql = "insert into generalinfo (firstname, lastname, email, username, pas
 					
 					PreparedStatement ps = connection.prepareStatement(sql);
 					
-					ps.setString(1, firstname);
-					ps.setString(2, lastname);
-					ps.setString(3, email);
-					ps.setString(4, username);
-					ps.setString(5, password);
+					ps.setString(1, enrollment);
+					ps.setString(2, password);
 					
 					int i = ps.executeUpdate();
 					
