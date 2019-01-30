@@ -9,6 +9,7 @@ public class GeneralInfoForm extends ActionForm {
 	private String enrollment;
 	private String password;
 	private String confirmPassword;
+	
 	public String getEnrollment() {
 		return enrollment;
 	}
