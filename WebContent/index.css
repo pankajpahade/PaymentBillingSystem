@@ -50,6 +50,7 @@ h1{
 #nav ul li {
 	display: inline;
 	list-style-type: none;
+	margin-left: 20px;
 }
 
 #nav a {
@@ -76,7 +77,7 @@ h1{
 	display: block;
 	width: 6000px;
 	height: 400px;
-	margin: 0;
+	
 }
 
 #slider.slide{

@@ -31,32 +31,32 @@
  }*/
 
  
- 
-/*function findEnrollment() {
+var chk = 1;
+function findEnrollment() {
 	 var enrollNo = document.getElementById('enroll').value;
 	 //const btnfield = document.getElementById('btn');
+	 
+		/* if(document.getElementById("enroll").value=='RTM09'){
+					document.getElementById("gnInfoForm").submit();
+				}else{
+					document.getElementById("enr").innerHTML = "Invalid Enrollment Number";
+				} */
+		 
 
 
 	 	//alert(pass);
               $.ajax({
 	            type: 'GET',
-	            url: 'http://localhost:8088/UniversityEnrollmentService/rest/enrollment/getdata/'+enrollNo,
+	            url: 'http://localhost:8080/UniversityEnrollmentService/rest/enrollment/getdata/'+enrollNo,
 	            
 	            success: function(response) {
 	            	if(response == "YEsss"){
-//	            		document.getElementById("gnInfoForm").submit();
-	            		$( "#gnInfoForm" ).submit();
-	            		//alert(response+"hi");
-	            		//document.getElementById("sub").style.visibility = "visible";
-	            		//document.getElementById("errmsg").style.visibility = "hidden";
+	            		if(chk == 1){
+	            		  document.getElementById("gnInfoForm").submit();
+	            		} 
 	            	}else{
-	            	    document.getElementById("enr").innerHTML='Invalide Enrollment ID';
+	            	    document.getElementById("enr").innerHTML='Invalide Enrollment Number';
 	            		document.getElementById("enr").style.color="red";
-	            		
-	            		//document.getElementById('validEnroll').innerHTML='Invalide Enrollment ID';
-	            		//document.getElementById("errmsg").style.visibility = "visible";
-	            		//alert("Invalid Enrollment Number, Please Enter Valid One");
-	            		
 	            	}
 	            },
 	            error: function(error) {
@@ -64,12 +64,21 @@
 	            }
 	    	  }); 
 	}
-*/
+
 function check(){
-	var pass = document.getElementById("checkPass");
-	var confPass = document.getElementById("checkConfPass");
+	var pass = document.getElementById("checkPass").value;
+	var confPass = document.getElementById("checkConfPass").value;
 	
-	if (pass == confPass) {
-		document.getElementById('message').style.visibility = "visible";	
+	if (pass != '' || confPass != '') {
+		//alert(pass +" "+confPass);
+		if (pass != confPass) {
+			document.getElementById('cpass').innerHTML='Please Enter Confirm Password';	
+			document.getElementById('cpass').style.color="red";
+			chk = 0;
+		}else{
+			document.getElementById('cpass').innerHTML='';
+			chk = 1;
+		}
 	}
+	
 }
