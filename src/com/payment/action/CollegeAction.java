@@ -12,5 +12,8 @@ import com.payment.form.CollegeForm;
 
 public class CollegeAction extends Action{
 	
-	
+	public void display()
+	{
+		
+	}
 }
