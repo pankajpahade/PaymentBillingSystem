@@ -12,17 +12,5 @@ import com.payment.form.CollegeForm;
 
 public class CollegeAction extends Action{
 	
-	@Override
-	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest req,
-			HttpServletResponse resp) throws Exception {
-		
-		String status = "success";
-		
-		CollegeForm formBean =  (CollegeForm) form;
-		
-		System.out.println(formBean.getClgName());
-		System.out.println("Came in action");
-		return mapping.findForward(status);
-	}
-
+	
 }
