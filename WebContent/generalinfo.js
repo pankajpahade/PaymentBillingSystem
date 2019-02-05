@@ -6,7 +6,7 @@ function findEnrollment() {
 	 var chekEmptyCPass = document.getElementById('checkConfPass').value;
               $.ajax({
 	            type: 'GET',
-	            url: 'http://localhost:8080/UniversityEnrollmentService/rest/enrollment/getdata/'+enrollNo,
+	            url: 'http://10.114.37.63:8080/UniversityEnrollmentService/rest/enrollment/getdata/'+enrollNo,
 	            
 	            success: function(response) {
 	            	if(response == "YEsss"){
