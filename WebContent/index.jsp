@@ -34,7 +34,7 @@
 				<li><a href="aboutus.jsp">About us</a></li>
 				<li><a href="generalinfo.jsp">New Registration</a></li>
 				<li><a href="modify.jsp">Modify Detail</a></li>
-				<li><a href="admin.jsp">Administrator</a></li>
+				<li><a href="master.do?method=populate">Administrator</a></li>
 				<li><a href="instructions.jsp">Instructions</a></li>
 			</ul>
 		</div>
