@@ -1,6 +1,7 @@
 
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %> 
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %> 
+<%@taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 
 <!DOCTYPE html>
 <html>
@@ -51,7 +52,6 @@ body {font-family: "Lato", sans-serif;}
 /* Style the tab content */
 .tabcontent {
   float: left;
-  padding: 0px 12px;
   border: 1px solid #ccc;
   width: 80%;
   border-left: none;
@@ -76,6 +76,11 @@ body {font-family: "Lato", sans-serif;}
 		}
 		document.getElementById(cityName).style.display = "block";
 		evt.currentTarget.className += " active";
+		if(evt.currentTarget.id != 'mas'){
+			document.getElementById("mas").style.background = "#f1f1f1";
+		}else{
+			document.getElementById("mas").style.background = "#ccc";
+		}
 	}
 
 	function addRow() {
@@ -146,16 +151,77 @@ body {font-family: "Lato", sans-serif;}
                 }  
 			  });
 		}
-		
-		
-		   
+	}
+	
+	
+	function selectDepartment(evt){
+		 var id=document.getElementById('myid').value;
+		 var colId = document.getElementById('colId').value;
+		 var xmlhttp=new XMLHttpRequest();
+		 var el = document.getElementsByTagName('select')[1];
+		 xmlhttp.onreadystatechange = function(data){
+			 if (this.readyState == 4 && this.status == 200) {
+				 localStorage.setItem("id","master");
+				 window.location.href = "admin.jsp";
+			 }
+		 };
+		 xmlhttp.open("GET","master.do?method=populate&id="+id+"&colId="+colId+"&selIds="+getSelectValues(el),true);
+		 xmlhttp.send();
+		 openTab(event, 'master');
+	 };
+	 
+	 function selectCollege(evt){
+		 var colId = document.getElementById('colId').value;
+		 var xmlhttp=new XMLHttpRequest();
+		 xmlhttp.onreadystatechange = function(data){
+			 if (this.readyState == 4 && this.status == 200) {
+				 localStorage.setItem("id","master");
+				 window.location.href = "admin.jsp";
+			 }
+		 };
+		 xmlhttp.open("GET","master.do?method=populate&colId="+colId,true);
+		 xmlhttp.send();
+		 openTab(event, 'master');
+	 };
 
+	function getSelectValues(select) {
+		 var result = [];
+		 var options = select && select.options;
+		 var opt;
+		
+		 for (var i=0, iLen=options.length; i<iLen; i++) {
+		   opt = options[i];
+		
+		   if (opt.selected) {
+		     result.push(opt.value || opt.text);
+		   }
+		 }
+		 return result;
+	}
+	
+	function mytab(event){
+		if(localStorage.getItem("id")){
+			openTab(event,'master');
+			localStorage.clear(); 
+			document.getElementById("mas").style.background = "#ccc";
+		}else{
+			openTab(event,'clg');
+		}
+	}
+	
+	function masterSave(){
+		var el = document.getElementsByTagName('select')[1];
+		localStorage.setItem("id","save");
+	}
+	
+	function masterReset(){
+		localStorage.setItem("id","reset");
 	}
 </script>
 
 
 </head>
-<body>
+<body onload="mytab(event)">
 
   <div class="container">
   <header>
@@ -168,6 +234,7 @@ body {font-family: "Lato", sans-serif;}
   <div class="tab">
 	  <button class="tablinks" onclick="openTab(event, 'clg')">Add College</button>
 	  <button class="tablinks" onclick="openTab(event, 'dept')">Add Department</button>
+	  <button class="tablinks" id="mas" onclick="openTab(event, 'master')">Master Link</button>
   </div>
   
   <div id="clg" class="tabcontent">
@@ -230,6 +297,68 @@ body {font-family: "Lato", sans-serif;}
         </fieldset>
       </html:form>
   </div>
+   
+   <div id="master" class="tabcontent">
+   		<html:form action="/master" method="POST" style="height: 80%, width:80%" styleId="masterForm">
+   		   <fieldset style="width: 80%,  height: 80%">
+           <legend>Link Master Data</legend>
+           		
+            <table>
+            	<tr>
+            		<td colspan="2">
+						<logic:equal name="masterForm" property="message" value="success">
+							<p style="color:green">Master data linked successfully</p>
+						</logic:equal>
+						<logic:equal name="masterForm" property="message" value="error">
+							<p style="color:red">Fail to link master data</p>
+						</logic:equal>
+					</td>
+            	</tr>
+            	<tr>
+                    <td>
+                        Select College :
+                    </td>
+                    <td>
+                        <html:select property="collegeId" style='width:300px;padding:5px' styleId="colId" onchange="selectCollege(event)">
+                            <html:option value="0">Select College</html:option>
+                            <html:optionsCollection name="masterForm" property="collegeList" label="label" value="value"/>
+                        </html:select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Select Departement :
+                    </td>
+                    <td>
+                        <html:select property="department" styleId="myid" multiple="true" onchange="selectDepartment()" style='width:300px;;height:100px;'>
+                            <html:option value="0">Select Departement</html:option>
+                            <html:optionsCollection name="masterForm" property="departmentList" label="label" value="value"/>
+                        </html:select>
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td>
+                        Select Branch :
+                    </td>
+                    <td>
+                        <html:select property="branchIds" multiple="true" style='width:300px;height:150px;' styleId="m">
+                            <html:option value="0">Select Branch</html:option>
+                            <html:optionsCollection name="masterForm" property="branchList" label="label" value="value"/>
+                        </html:select>
+                    </td>
+                </tr>
+                <tr>
+                	<td></td>
+                    <td colspan="2">
+                        <html:submit property="method" value="save" onclick="masterSave()"/>
+                        <html:submit property="method" value="reset" onclick="masterReset()" />
+                    </td>
+                </tr>
+            </table>
+            </fieldset>
+   		</html:form>
+   </div>
    
   </div>   
 
