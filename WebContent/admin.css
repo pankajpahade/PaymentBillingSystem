@@ -1,0 +1,53 @@
+body{
+	background-color: #d9fddc;
+}
+
+header {
+	background-color: #408080;
+	color: white;
+	box-shadow: inset 10px 40px 60px 0px #808080;
+	border-bottom: solid 1px #003B47;
+	text-align: center;
+	height: 103px;
+}
+
+h1{
+	padding-top: 35px;
+	padding-right: 100px;
+}
+
+#logo{
+	width: 130px;
+	height: 100px;
+    padding : 2px;
+}
+
+table{
+	border: medium;
+}
+
+#mybox{
+	border: 5px;
+	box-sizing: border-box;
+}
+
+form{
+	border: 3px solid #008080;
+	width: auto;
+	height: auto;
+	background-color: #c0c0c0;
+	padding: 70px;
+	}
+
+tr td{
+  width: 100%;
+  padding: 14px 24px;
+  margin: 8px 0;
+}
+
+#ss{
+	width: 100%;
+}
+
+
+
