@@ -45,10 +45,10 @@ public class MasterDao {
 			while(rs.next()) {
 				data.add(new LabelValueBean(rs.getString("CName"), rs.getString("Cid")));	
 			}
-		}catch(SQLException sql) {
-			PMLogger.appendException("SQLException occured while getting college data", sql);
 		}catch(NullPointerException np){
 			PMLogger.appendException("NullPointerException occured while getting college data", np);
+		}catch(SQLException sql) {
+			PMLogger.appendException("SQLException occured while getting college data", sql);
 		}finally {
 			DBConnection.closeResultSet(rs);
 			DBConnection.closePreparedStatement(ps);
@@ -71,10 +71,10 @@ public class MasterDao {
 					branchList.add(new LabelValueBean(rs.getString("dName")+" - "+rs.getString("bName"),rs.getString("branchId")));
 				}
 			}
-		}catch(SQLException sql) {
-			PMLogger.appendException("SQLException occured while getting branch data", sql);
 		}catch(NullPointerException npx) {
 			PMLogger.appendException("NullPointerException occured while getting branch data", npx);
+		}catch(SQLException sql) {
+			PMLogger.appendException("SQLException occured while getting branch data", sql);
 		}finally {
 			DBConnection.closeResultSet(rs);
 			DBConnection.closePreparedStatement(ps);
@@ -94,10 +94,10 @@ public class MasterDao {
 			while(rs.next()) {
 				departmentList.add(new LabelValueBean(rs.getString("dName"),rs.getString("deptId")));
 			}
-		}catch(SQLException sqlE) {
-			PMLogger.appendException("SQLException occured while getting department data", sqlE);
 		}catch(NullPointerException npEx) {
 			PMLogger.appendException("NullPointerException occured while getting department data", npEx);
+		}catch(SQLException sqlE) {
+			PMLogger.appendException("SQLException occured while getting department data", sqlE);
 		}finally {
 			DBConnection.closeResultSet(rs);
 			DBConnection.closePreparedStatement(ps);
@@ -129,6 +129,8 @@ public class MasterDao {
 			ps.setString(3, collegeId);
 			ps.execute();
 			flag = true;
+		}catch(NullPointerException npEx) {
+			PMLogger.appendException("NullPointerException occured while getting department data", npEx);
 		}catch(SQLException sqlEx) {
 			PMLogger.appendException("Error occured while linking master data", sqlEx);
 		}finally {
