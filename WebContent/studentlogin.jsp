@@ -6,10 +6,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="studentlogin.js"></script>
 <link rel="stylesheet" type="text/css" href="studentlogin.css">
 </head>
 <body>
-<center>
+<div align="center">
  <header>
     <img align="left" id="logo" src="images/unilogo.png"/>
     <h1>PAYMENT BILLING SYSTEM</h1>
@@ -17,25 +19,37 @@
  
  <div>
    <h2 style="align:center">STUDENT LOGIN</h2>
-   <html:form action="/studentlogin" method="POST">
+   <html:form action="/studentlogin" method="POST" styleId="signInForm">
+    <div id="invalid"></div>
+    <div id="invalid2" style="font-size:13px;"></div>
      <table>
         <tr>
-          <td>Enrollment Number :</td>
-          <td><html:text property="enrollment"></html:text></td>
+          <td><label><b>Enrollment Number </b></label><span class="star">*</span></td>
+        </tr>
+        <tr>
+          <td><html:text styleId="chekEnroll" property="enrollment"></html:text><span id="enrollEmpty" style="font-size: 13px;"></span></td>
         </tr>
         
         <tr>
-          <td>Password :</td>
-          <td><html:password property="password"></html:password></td>
+          <td><label><b>Password </b></label><span class="star">*</span></td>
+        </tr>
+        <tr>
+          <td><html:password property="password" styleId="checkPass"></html:password><span id="passEmpty" style="font-size: 13px;"></span></td>
+        </tr>
+                
+        <tr>
+          <td>
+           <html:button styleId="subBtn" style="width:65px; height:30px" property="send" onclick="checkAvailable()" value="LOGIN"></html:button>
+           <html:button styleClass="mybuttonclass" styleId="cancl" property="cancel" onclick="history.go(0)" value="CANCEL"></html:button>
+          </td>
         </tr>
         
         <tr>
-          <td><html:submit style="width:100%" property="send">Login</html:submit></td>
-          <td><html:cancel style="width:100%">Cancel</html:cancel></td>
+          <td><a id="ref" href="forgetPassword.jsp">Forget Password?</a></td>
         </tr>
-     </table>
-   </html:form>
+     </table>    
+   </html:form>  
  </div>
-</center> 
+</div> 
 </body>
 </html>

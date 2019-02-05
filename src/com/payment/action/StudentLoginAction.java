@@ -15,6 +15,10 @@ import org.apache.struts.action.ActionMapping;
 import com.payment.db.DBConnection;
 import com.payment.form.StudentLoginForm;
 
+/**
+ * @author pankaj
+ * created on 26-01-2019
+ */
 public class StudentLoginAction extends Action {
 
 	DBConnection conn = null;
@@ -32,7 +36,7 @@ public class StudentLoginAction extends Action {
 		
 		String enrollment = formBean.getEnrollment();
 		String password = formBean.getPassword();
-		
+
 		Connection connection = conn.getDbConn();
 		
 		PreparedStatement ps = connection.prepareStatement(sql);
@@ -45,10 +49,10 @@ public class StudentLoginAction extends Action {
 			pass = resultSet.getString("password");
 		}
 		
-		if (pass.equals(password) && enroll.equals(enrollment)) {
+		if ((enroll != null && pass != null) && (!enroll.isEmpty() && !pass.isEmpty()) && (pass.equals(password) && enroll.equals(enrollment))) {
 			status = "success";
 		}else {
-			status="error";
+			status=null;
 		}
 		return mapping.findForward(status);
 	}

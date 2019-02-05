@@ -13,6 +13,10 @@ import org.apache.struts.action.ActionMapping;
 
 import com.payment.db.DBConnection;
 
+/**
+ * @author pankaj
+ * created on 17-01-2019
+ */
 public class GeneralInfoAction extends Action {
 
 	DBConnection conn = null;
@@ -21,21 +25,17 @@ public class GeneralInfoAction extends Action {
 			HttpServletResponse resp) throws Exception {
 		 conn = new DBConnection();
 		 String status = "";
-		//GeneralInfoForm formBean = (GeneralInfoForm) form;
 	
-        String sql = "insert into generalinfo (enrollment, password) values(?, ?)";
+        String sql = "insert into generalinfo (enrollment, email, password) values(?, ?, ?)";
 		
         String enrollment = req.getParameter("enrollment");
+        String email = req.getParameter("email");
         String password = req.getParameter("password");
 		String confirmPassword = req.getParameter("confirmPassword");
-        
-		/*String enrollment = formBean.getEnrollment();
-		String password = formBean.getPassword();
-		String confirmPassword = formBean.getConfirmPassword();*/
 		
 		if (password.equals(confirmPassword)) {
 			
-			if (enrollment.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+			if (enrollment.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
 				status="error";
 			} else {
 				try {
@@ -44,7 +44,8 @@ public class GeneralInfoAction extends Action {
 					PreparedStatement ps = connection.prepareStatement(sql);
 					
 					ps.setString(1, enrollment);
-					ps.setString(2, password);
+					ps.setString(2, email);
+					ps.setString(3, password);
 					
 					int i = ps.executeUpdate();
 					

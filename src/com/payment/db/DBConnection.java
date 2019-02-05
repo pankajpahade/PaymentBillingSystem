@@ -3,6 +3,10 @@ package com.payment.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/** 
+ * @author pankaj
+ * created on 17-01-2019
+ */
 public class DBConnection {
 
 	public DBConnection() {

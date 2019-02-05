@@ -21,31 +21,42 @@
   
   <h2 style="align:center">REGISTRATION FORM</h2>
     <html:form action="/mygeneralinfo" method="POST" styleId="gnInfoForm">
-    
-     <table>
+    <div id="emptyform"></div>
+     <table style="width: 80px">
       <tr> 
-       <td> Enrollment Number :</td>
-       <td><input id="enroll" type="text" name="enrollment" placeholder="Enrollment Number"><div id="enr" style="font-size: 13px;"></div></td>
+       <td style="padding-bottom: 0"><label><b>Enrollment Number </b></label><span class="star">*</span></td>
       </tr>
-      
       <tr> 
-       <td>Password   :</td>
-       <td><input id="checkPass" type="password" name="password" placeholder="Password"/>
+       <td style="padding-bottom: 15px"><input id="enroll" type="text" name="enrollment" placeholder="Enrollment Number"><div id="enr" style="font-size: 13px;"></div></td>
       </tr>
       
       <tr>
-       <td>Confirm Password :</td>
-       <td><input id="checkConfPass" type="password" name="confirmPassword" placeholder="Confirm Password" onmouseleave="check()"/><div id="cpass" style="font-size: 13px;"></div></td>
+       <td style="padding-bottom: 0"><label><b>Email Id </b></label><span class="star">*</span></td>      
+      </tr> 
+      <tr> 
+       <td style="padding-bottom: 15px"><input id="eId" type="text" name="email" placeholder="Email Id"></td>
+      </tr>
+      
+      <tr> 
+       <td style="padding-bottom: 0"><label><b>Password </b></label><span class="star">*</span></td>  
+      </tr> 
+      <tr>  
+       <td style="padding-bottom: 15px"><input id="checkPass" type="password" name="password" placeholder="Password"/></td>
       </tr>
       
       <tr>
-       <td><html:button disabled="false" style="width:100%" value="REGISTER" property="submitBtn" onclick="findEnrollment()"></html:button></td>
-       <td><html:button style="width:100%" property="cancelBtn" onclick="this.form.reset();">CANCEL</html:button></td>
+       <td style="padding-bottom: 0"><label><b>Confirm Password </b></label><span class="star">*</span></td>  
+      </tr>  
+      <tr> 
+       <td style="padding-bottom: 15px"><input id="checkConfPass" type="password" name="confirmPassword" placeholder="Confirm Password" onmouseleave="check()"/><div id="cpass" style="font-size: 13px;"></div></td>
+      </tr>
+      
+      <tr>
+       <td><html:button styleClass="myBtn" disabled="false"  value="REGISTER" property="submitBtn" onclick="findEnrollment()"></html:button>
+       <html:button styleClass="myBtn1" styleId="cnclBtn" property="cancelBtn" onclick="history.go(0)" value="CANCEL"></html:button></td>
       </tr>
      </table>
-      
     </html:form>
-   </div>   
-  
+   </div>     
  </body>
 </html>
