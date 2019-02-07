@@ -44,3 +44,81 @@ function check(){
 		}
 	}	
 }
+
+//Function to regular expression
+
+function validatePassword() {
+    var p = document.getElementById('checkPass').value,
+        errors = [];
+    if (p.length < 8 ) {
+    	document.getElementById('div1').innerHTML='Your password length minimum of 8 characters';	
+		document.getElementById('div1').style.color="red";
+    }
+    if (p.search(/[a-z]/i) < 0) {
+    	document.getElementById('div1').innerHTML='Your password contains atleast one character';	
+		document.getElementById('div1').style.color="red";
+    }
+    
+    if (p.search(/[0-9]/) < 0) {
+    	document.getElementById('div1').innerHTML='Your password contains atleast one number';	
+		document.getElementById('div1').style.color="red";
+    }
+    
+    if(p.length > 8 && p.search(/[a-z]/i) > 0 && p.search(/[0-9]/) > 0)
+    	{
+    	document.getElementById('div1').innerHTML='';	
+    	return false;
+    	}
+    return true;
+}
+
+
+//function to check format of email id
+
+function checkPatternOfEmail()
+{
+      var patternMatch=/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;;	
+      var emailId=document.getElementById('eId').value;
+      
+      if(!patternMatch.test(emailId))
+    	  {
+    	  document.getElementById('emailId').innerHTML='Please enter valid format of email Id';	
+		     document.getElementById('emailId').style.color="red";
+		     return true;
+    	  }
+      
+      else
+    	  {
+    	    document.getElementById('emailId').innerHTML='';	
+  		     
+  		     return false;
+    	  }
+
+}
+
+//function to check enrollment number through database
+function checkEnrollmentNumber()
+{
+	 var enrollNo = document.getElementById('enroll').value;
+     
+	 $.ajax({  
+		 
+		    type: "POST",  
+		    url : "./mygeneralinfo.do?action=execute",
+		   /* data: {"enrollment":enrollment,"email":email,"password":password},*/
+		    data:{"enrollment":enrollment,"email":email,"password":password},
+		    dataType: "text",
+		    success: function(response){  
+		    	alert(enrollNo);
+		    	 document.getElementById('enroll').innerHTML='';	
+	  		     
+	  		     
+		    
+		    },  
+		    error: function(e){  
+		    	document.getElementById('emailId').innerHTML='Please enter unregistered enrollment number';	
+			     document.getElementById('emailId').style.color="red";
+			     return true;
+         }  
+		  });
+}

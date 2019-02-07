@@ -27,28 +27,33 @@
        <td style="padding-bottom: 0"><label><b>Enrollment Number </b></label><span class="star">*</span></td>
       </tr>
       <tr> 
-       <td style="padding-bottom: 15px"><input id="enroll" type="text" name="enrollment" placeholder="Enrollment Number"><div id="enr" style="font-size: 13px;"></div></td>
+      <!--  <td style="padding-bottom: 15px"><input id="enroll" type="text" name="enrollment" placeholder="Enrollment Number"><div id="enr" style="font-size: 13px;"></div></td> -->
+         <td style="padding-bottom: 15px"><html:text styleId="enroll" property="enrollment" onmouseout="checkEnrollmentNumber()"></html:text><div id="enr" style="font-size: 13px;"></div></td>
+ 
       </tr>
       
       <tr>
        <td style="padding-bottom: 0"><label><b>Email Id </b></label><span class="star">*</span></td>      
       </tr> 
       <tr> 
-       <td style="padding-bottom: 15px"><input id="eId" type="text" name="email" placeholder="Email Id"></td>
+       <!-- <td style="padding-bottom: 15px"><input id="eId" type="text" name="email" placeholder="Email Id"></td> -->
+       <td style="padding-bottom: 15px"><html:text styleId="eId" property="email" onmouseout="checkPatternOfEmail()"></html:text><div id="emailId"></div></td>
       </tr>
       
       <tr> 
        <td style="padding-bottom: 0"><label><b>Password </b></label><span class="star">*</span></td>  
       </tr> 
       <tr>  
-       <td style="padding-bottom: 15px"><input id="checkPass" type="password" name="password" placeholder="Password"/></td>
+       <!-- <td style="padding-bottom: 15px"><input id="checkPass" type="password" name="password" placeholder="Password"/></td> -->
+        <td style="padding-bottom: 15px"><html:password styleId="checkPass" property="password" onmouseout="validatePassword()"></html:password><div id="div1"></div></td>
       </tr>
       
       <tr>
        <td style="padding-bottom: 0"><label><b>Confirm Password </b></label><span class="star">*</span></td>  
       </tr>  
       <tr> 
-       <td style="padding-bottom: 15px"><input id="checkConfPass" type="password" name="confirmPassword" placeholder="Confirm Password" onmouseleave="check()"/><div id="cpass" style="font-size: 13px;"></div></td>
+      <!-- <!--   <td style="padding-bottom: 15px"><input id="checkConfPass" type="password" name="confirmPassword" placeholder="Confirm Password" onmouseleave="check()"/><div id="cpass" style="font-size: 13px;"></div></td> -->
+               <td style="padding-bottom: 15px"><html:password styleId="checkConfPass" property="confirmPassword" onmouseout="check()"></html:password><div id="cpass" style="font-size: 13px;"></div></td> 
       </tr>
       
       <tr>
