@@ -15,7 +15,7 @@
 
 	<action-mappings>
 		<action path="/mygeneralinfo" type="com.payment.action.GeneralInfoAction"
-			name="generalInfo" input="/generalinfo.jsp" scope="request">
+			name="generalInfo" input="/generalinfo.jsp" scope="request" parameter="action">
 			<forward name="error" path="/error.jsp"></forward>
 			<forward name="success" path="/success.jsp"></forward>
 		</action>
