@@ -32,7 +32,7 @@ public class GeneralInfoAction extends Action {
         String sql = "insert into generalinfo (enrollment, email, password) values(?, ?, ?)";
 		
        // String enrollment = req.getParameter("enrollment");
-        String enrollment = formBean.getEnrollment();
+        String enrollment = req.getParameter("enrollment");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 		String confirmPassword = req.getParameter("confirmPassword");
