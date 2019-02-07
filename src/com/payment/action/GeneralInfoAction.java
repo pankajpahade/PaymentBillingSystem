@@ -28,9 +28,11 @@ public class GeneralInfoAction extends Action {
 		 String status = "";
 		 
 		 GeneralInfoForm formBean = (GeneralInfoForm) form;
+		 String getEnrollmentNumberQuery="select enrollment from generalinfo where enrollment=?";
+	      
 	
         String sql = "insert into generalinfo (enrollment, email, password) values(?, ?, ?)";
-		
+        String password = formBean.getPassword();
        // String enrollment = req.getParameter("enrollment");
         String enrollment = req.getParameter("enrollment");
         String email = req.getParameter("email");
