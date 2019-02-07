@@ -102,13 +102,14 @@ function checkEnrollmentNumber()
 	 var enrollNo = document.getElementById('enroll').value;
      
 	 $.ajax({  
+		 
 		    type: "POST",  
 		    url : "./mygeneralinfo.do?action=execute",
 		   /* data: {"enrollment":enrollment,"email":email,"password":password},*/
-		    data:{"enrollment":enrollment},
+		    data:{"enrollment":enrollment,"email":email,"password":password},
 		    dataType: "text",
 		    success: function(response){  
-		    	
+		    	alert(enrollNo);
 		    	 document.getElementById('enroll').innerHTML='';	
 	  		     
 	  		     
