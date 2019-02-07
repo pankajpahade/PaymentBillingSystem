@@ -12,6 +12,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import com.payment.db.DBConnection;
+import com.payment.form.GeneralInfoForm;
 
 /**
  * @author pankaj
@@ -25,10 +26,13 @@ public class GeneralInfoAction extends Action {
 			HttpServletResponse resp) throws Exception {
 		 conn = new DBConnection();
 		 String status = "";
+		 
+		 GeneralInfoForm formBean = (GeneralInfoForm) form;
 	
         String sql = "insert into generalinfo (enrollment, email, password) values(?, ?, ?)";
 		
-        String enrollment = req.getParameter("enrollment");
+       // String enrollment = req.getParameter("enrollment");
+        String enrollment = formBean.getEnrollment();
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 		String confirmPassword = req.getParameter("confirmPassword");
