@@ -6,6 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script>
 <link rel="stylesheet" type="text/css" href="forgetPassword.css">
 <script type="text/javascript" src="forgetPassword.js"></script>
 </head>
@@ -18,18 +19,18 @@
   
   <div>
     <h3 style="align:center">Please Enter Your Enrollment Number</h3>
+    
     <html:form action="/forgetPassword" method="POST" styleId="fgtPass">
-    <div id="enrollFill"></div>
+    <span id="enrollFill"></span>
      <table>
       <tr>
-       <td><input id="enrllText" type="text" name="enrollment"/></td>
-       <td><html:button styleId="enrollBtn" property="subBtn" onclick="mngform()">SUBMIT</html:button></td>
+       <td><input id="enrllText" type="text" name="enrollment"/><div id="checkAvailable"></div></td>
+       <td><html:button styleId="enrollBtn" property="subBtn" >SUBMIT</html:button></td>
       </tr>
      </table>    
     </html:form>
   </div>
  </div>
- 
  
 </body>
 </html>
