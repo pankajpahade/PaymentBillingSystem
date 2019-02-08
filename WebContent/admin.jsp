@@ -57,8 +57,6 @@ body {font-family: "Lato", sans-serif;}
   height: 500px;
   display: none;
 }
-
-
 </style>
 
 <script>
@@ -87,11 +85,12 @@ body {font-family: "Lato", sans-serif;}
 		var branch = count - 2 ;
 		$('#myTable tr.dynamicRows')
 				.before(
-						'<tr id="tr_'+count+'" class="dynRows"><td>Branch '+branch+' :-</td><td><input type="text" name="branchsName" class="branchName" style=" width:120px;"></td><td><input type="button" value="X" onClick="del('
-								+ count + ');"></td></tr>');
+						'<tr id="tr_'+count+'" class="dynRows"><td>Branch '+branch+' </td><td><input type="text" name="branchsName" class="branchName" style=" width:200px;"></td>'
+						+'<td><a href="#" onClick="del('+ count + ');"><img src="images/cross.jpg" width="20px" height="20px" style="border: 1px solid orange;"></a></td>'
+						+'</tr>');
 
 	}
-
+	
 	function del(id) {
 		var trID = "tr_" + id;
 		var elem = document.getElementById(trID);
@@ -100,10 +99,12 @@ body {font-family: "Lato", sans-serif;}
 	
 	function delRows(){
 		$('#myTable tr.dynRows').remove();
+		$('#deptForm')[0].reset();
 	}
 	
 	function clearField(){
 		document.getElementById("insClgMsg").style.visibility = "hidden";
+		$("#collegeForm")[0].reset();
 	}
 	
 	function saveData(field){
@@ -237,19 +238,19 @@ body {font-family: "Lato", sans-serif;}
   </div>
   
   <div id="clg" class="tabcontent">
-	  <html:form action="/college" method="POST" style="height: 80%, width:80%">
+	  <html:form action="/college" method="POST" style="height: 80%, width:80%" styleId="collegeForm">
         <fieldset style="width: 80%  height: 80%">
            <legend>Add College:</legend>
            
            <table id="myTable1">
              <tr id="insClgMsg" style="visibility: hidden; color: green; height: 10px;"><td></td><td colspan="2">Clg Saved Successfully !</td></tr>
              <tr>
-               <td>Add College :- </td>
+               <td>Add College </td>
                <td>
-                 <html:text property="clgName" style=" width:120px;" styleId="collegeName"></html:text>
+                 <html:text property="clgName" style=" width:200px;" styleId="collegeName"></html:text>
                </td>
                <td>
-                 <input type="button" value="X" onClick="this.form.reset();clearField();" />
+                 <a href="#" onclick="clearField();"><img src="images/cross.jpg" width="20px" height="20px" style="border: 1px solid orange;"></a>
                </td>
               </tr>
                     
@@ -266,19 +267,19 @@ body {font-family: "Lato", sans-serif;}
   </div>
   
   <div id="dept" class="tabcontent">
-     <html:form action="/dept" method="POST" style="height: 80%, width:80%">
+     <html:form action="/dept" method="POST" style="height: 80%, width:80%" styleId="deptForm">
         <fieldset style="width: 80%  height: 80%">
            <legend>Add/Update Department:</legend>
            
            <table id="myTable">
               <tr id="insDeptMsg" style="visibility: hidden; color: green;"><td></td><td colspan="2">Dept/Branch Saved Successfully !</td></tr>
              <tr>
-               <td>Department :- </td>
+               <td>Department </td>
                <td>
-                 <html:text property="deptName" style=" width:120px;" styleId="departmentName"></html:text> 
+                 <html:text property="deptName" style=" width:200px;" styleId="departmentName"></html:text> 
               </td>
                <td>
-                 <input type="button" value="X" onClick="this.form.reset(); delRows();" />
+                 <a href="#" onclick="delRows();"><img src="images/cross.jpg" width="20px" height="20px" style="border: 1px solid orange;"></a>
                </td>
                <td>  
                  <html:button property="myButton" onclick="addRow();">Add Branch</html:button>
@@ -315,31 +316,33 @@ body {font-family: "Lato", sans-serif;}
             	</tr>
             	<tr>
                     <td>
-                        Select College :
+                        Select College
                     </td>
+                    <td>:</td>
                     <td>
                         <html:select property="collegeId" style='width:300px;padding:5px' styleId="colId" onchange="selectCollege(event)">
                             <html:option value="0">Select College</html:option>
-                            <html:optionsCollection name="masterForm" property="collegeList" label="label" value="value"/>
+	                        <html:optionsCollection name="masterForm" property="collegeList" label="label" value="value"/>
                         </html:select>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Select Departement :
+                        Select Departement
                     </td>
+                    <td>:</td>
                     <td>
                         <html:select property="department" styleId="myid" multiple="true" onchange="selectDepartment()" style='width:300px;;height:100px;'>
                             <html:option value="0">Select Departement</html:option>
-                            <html:optionsCollection name="masterForm" property="departmentList" label="label" value="value"/>
+	                        <html:optionsCollection name="masterForm" property="departmentList" label="label" value="value"/>
                         </html:select>
                     </td>
-                    
                 </tr>
                 <tr>
                     <td>
-                        Select Branch :
+                        Select Branch
                     </td>
+                    <td>:</td>
                     <td>
                         <html:select property="branchIds" multiple="true" style='width:300px;height:150px;' styleId="m">
                             <html:option value="0">Select Branch</html:option>
@@ -348,10 +351,10 @@ body {font-family: "Lato", sans-serif;}
                     </td>
                 </tr>
                 <tr>
-                	<td></td>
-                    <td colspan="2">
-                        <html:submit property="method" value="save" onclick="masterSave()"/>
-                        <html:submit property="method" value="reset" onclick="masterReset()" />
+                	<td></td><td></td>
+                    <td>
+                        <html:submit property="method" value="save" onclick="masterSave()" style='width:49%'/>
+                        <html:submit property="method" value="reset" onclick="masterReset()" style='width:49%'/>
                     </td>
                 </tr>
             </table>
