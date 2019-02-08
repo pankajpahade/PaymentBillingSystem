@@ -3,6 +3,7 @@ package com.payment.action;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,21 +29,12 @@ public class StudentLoginAction extends Action {
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest req,
 			HttpServletResponse resp) throws Exception {
-		conn = new DBConnection();
 		String status = "";
-		StudentLoginForm formBean = (StudentLoginForm) form;
-
-		String sql = "select enrollment, password from generalinfo where enrollment = ?";
-		
+		StudentLoginForm formBean = (StudentLoginForm) form;		
 		String enrollment = formBean.getEnrollment();
 		String password = formBean.getPassword();
-
-		Connection connection = conn.getDbConn();
 		
-		PreparedStatement ps = connection.prepareStatement(sql);
-		ps.setString(1, enrollment);
-		
-		ResultSet resultSet = ps.executeQuery();
+		ResultSet resultSet = this.checkEnrollment(enrollment);
 		
 		while (resultSet.next()) {
 			enroll = resultSet.getString("enrollment");
@@ -55,5 +47,15 @@ public class StudentLoginAction extends Action {
 			status=null;
 		}
 		return mapping.findForward(status);
+	}
+	
+	public ResultSet checkEnrollment(String enrollment) throws SQLException {
+		conn = new DBConnection();
+		String sql = "select * from generalinfo where enrollment = ?";
+		Connection connection = conn.getDbConn();
+		PreparedStatement ps = connection.prepareStatement(sql);
+		ps.setString(1, enrollment);
+		ResultSet resultSet = ps.executeQuery();
+		return resultSet;
 	}
 }
