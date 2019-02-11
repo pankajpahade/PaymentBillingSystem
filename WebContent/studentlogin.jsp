@@ -12,10 +12,7 @@
 </head>
 <body>
 <div align="center">
- <header>
-    <img align="left" id="logo" src="images/unilogo.png"/>
-    <h1>PAYMENT BILLING SYSTEM</h1>
- </header>
+ <jsp:include page="header.jsp"></jsp:include>
  
  <div>
    <h2 style="align:center">STUDENT LOGIN</h2>

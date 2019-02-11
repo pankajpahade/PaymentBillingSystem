@@ -29,13 +29,13 @@
 		
       <div id="topup">
 		<div id="nav">
-			<ul>
-				<li class="first"><a href="home.jsp">Home</a></li>
-				<li><a href="aboutus.jsp">About us</a></li>
+			<ul style='text-align:center'>
+				<li class="first"><a href="index.jsp">Home</a></li>
 				<li><a href="generalinfo.jsp">New Registration</a></li>
-				<li><a href="modify.jsp">Modify Detail</a></li>
+<!-- 				<li><a href="modify.jsp">Modify Detail</a></li> -->
 				<li><a href="master.do?method=populate">Administrator</a></li>
 				<li><a href="instructions.jsp">Instructions</a></li>
+				<li><a href="aboutus.jsp">About us</a></li>
 			</ul>
 		</div>
 		
