@@ -14,10 +14,7 @@
  
   <div class="container" align="center">
 
-  <header>
-    <img align="left" id="logo" src="images/unilogo.png"/>
-    <h1>PAYMENT BILLING SYSTEM</h1>
-  </header>
+<jsp:include page="header.jsp"></jsp:include>
   
   <h2 style="align:center">REGISTRATION FORM</h2>
     <html:form action="/mygeneralinfo" method="POST" styleId="gnInfoForm">

@@ -224,10 +224,8 @@ body {font-family: "Lato", sans-serif;}
 <body onload="mytab(event)">
 
   <div class="container">
-  <header>
-    <img align="left" id="logo" src="images/unilogo.png"/>
-    <h1>ADMINISTRATOR</h1>
-  </header>
+
+<jsp:include page="header.jsp"></jsp:include>
    
   <br/>
    
@@ -316,7 +314,7 @@ body {font-family: "Lato", sans-serif;}
             	</tr>
             	<tr>
                     <td>
-                        Select College
+                        Select College (<span style='color:red'>*</span>)
                     </td>
                     <td>:</td>
                     <td>
@@ -328,7 +326,7 @@ body {font-family: "Lato", sans-serif;}
                 </tr>
                 <tr>
                     <td>
-                        Select Departement
+                        Select Departement (<span style='color:red'>*</span>)
                     </td>
                     <td>:</td>
                     <td>
@@ -340,7 +338,7 @@ body {font-family: "Lato", sans-serif;}
                 </tr>
                 <tr>
                     <td>
-                        Select Branch
+                        Select Branch (<span style='color:red'>*</span>)
                     </td>
                     <td>:</td>
                     <td>
