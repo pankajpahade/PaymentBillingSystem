@@ -4,7 +4,6 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <%@ page import = "java.io.*,java.util.*" %>
 
-<%-- <%@page import="org.json.JSONObject"%> --%>
 
 <!DOCTYPE html>
 <html>
@@ -213,8 +212,6 @@ $(document).ready(function() {
         <fieldset style="width: 80%  height: 80%">
            <legend>UNIVERSITY FEES</legend>
            
-           
-           
         </fieldset>
      <%--  </html:form> --%>
   </div>
@@ -223,7 +220,6 @@ $(document).ready(function() {
    		<%-- <html:form action="/master" method="POST" style="height: 80%, width:80%" styleId="masterForm"> --%>
    		   <fieldset style="width: 80%,  height: 80%">
            <legend>COLLEGE FEES</legend>
-           		
             
            </fieldset>
    		<%-- </html:form> --%>
