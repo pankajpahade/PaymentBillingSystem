@@ -4,7 +4,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <%@ page import = "java.io.*,java.util.*" %>
 
-<%@page import="org.json.JSONObject"%>
+<%-- <%@page import="org.json.JSONObject"%> --%>
 
 <!DOCTYPE html>
 <html>
