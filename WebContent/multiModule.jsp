@@ -133,7 +133,7 @@ $(document).ready(function() {
   
   
   <div id="exam" class="tabcontent">
-	    <fieldset style="width: 80%  height: 80%">
+	    <fieldset style="width: 50%  height: 80%">
            <legend>EXAM FEES</legend>
            <table>
              <tr>
