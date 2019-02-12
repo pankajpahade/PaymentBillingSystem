@@ -93,14 +93,20 @@ $(document).ready(function() {
     $("#deptNames").children('option:gt(0)').hide(); //dept
     $("#semester").children('option:gt(0)').hide();
     $("#clgNames").change(function() {
+    	 $("#deptNames").val("");$("#branchNames").val("");$("#semester").val("");
     	 $("#deptNames").children("option:gt(0)").show(); //dept
+    	 document.getElementById("fees").value = "";
     })
     $("#deptNames").change(function() { //clg
+    	$("#branchNames").val("");$("#semester").val("");
         $("#branchNames").children('option').hide();//dept
         $("#branchNames").children("option[value^=" + $(this).val() + "]").show()//dept
+        document.getElementById("fees").value = "";
     })
     $("#branchNames").change(function() { //dept
+    	 $("#semester").val("");
     	 $("#semester").children("option:gt(0)").show();
+    	 document.getElementById("fees").value = "";
     })
     $("#semester").change(function() {
     	var x = Math.floor((Math.random() * 10000) + 1000);
