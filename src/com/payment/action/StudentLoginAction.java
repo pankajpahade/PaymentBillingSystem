@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +16,9 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import com.payment.db.DBConnection;
+import com.payment.form.MappingForm;
 import com.payment.form.StudentLoginForm;
+
 
 /**
  * @author pankaj
@@ -46,6 +50,46 @@ public class StudentLoginAction extends Action {
 		}else {
 			status=null;
 		}
+		
+        List<MappingForm> colleges = new ArrayList<MappingForm>();
+        List<MappingForm> depts = new ArrayList<MappingForm>();
+        List<MappingForm> branches = new ArrayList<MappingForm>();
+        
+		conn = new DBConnection();
+		String cSql = "select distinct CId, CName from paybill.collegeinfo where CName is not null ";
+		String dSql = "select distinct deptId, dName from paybill.department where dName is not null";
+		String bsql = "select distinct branchId, deptId, bName from paybill.branches where bName is not null";
+		
+		Connection connection = conn.getDbConn();
+		PreparedStatement cps = connection.prepareStatement(cSql);
+		PreparedStatement dps = connection.prepareStatement(dSql);
+		PreparedStatement bps = connection.prepareStatement(bsql);
+		
+		ResultSet crs = cps.executeQuery();
+		ResultSet drs = dps.executeQuery();
+		ResultSet brs = bps.executeQuery();
+		
+		while (crs.next()) {
+			//colleges.add(crs.getString("CName"));
+			colleges.add(new MappingForm(crs.getInt("CId"),-1,crs.getString("CName")));
+		}
+		
+		while(drs.next()) {
+			//depts.add(drs.getString("dName"));
+			depts.add(new MappingForm(drs.getInt("deptId"),-1, drs.getString("dName")));
+		}
+		
+		while(brs.next()) {
+			//branches.add(brs.getString("bName"));	
+			branches.add(new MappingForm(brs.getInt("deptId"), brs.getInt("branchId"), brs.getString("bName")));
+		}
+		
+		
+        System.out.println(colleges+"----"+depts +"---"+ branches);
+		req.setAttribute("branches", branches);
+		req.setAttribute("colleges", colleges);
+		req.setAttribute("depts", depts);
+		
 		return mapping.findForward(status);
 	}
 	
