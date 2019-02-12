@@ -85,7 +85,7 @@ public class StudentLoginAction extends Action {
 		}
 		
 		
-        System.out.println(colleges+"----"+depts +"---"+ branches);
+        System.out.println(colleges+"----"+depts +"-----"+ branches);
 		req.setAttribute("branches", branches);
 		req.setAttribute("colleges", colleges);
 		req.setAttribute("depts", depts);

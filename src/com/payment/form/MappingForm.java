@@ -6,6 +6,7 @@ public class MappingForm {
 	private int childId;
 	private String fieldName;
 	
+	
 	public int getParentId() {
 		return parentId;
 	}
@@ -24,8 +25,6 @@ public class MappingForm {
 	public void setFieldName(String fieldName) {
 		this.fieldName = fieldName;
 	}
-	
-	
 	
 	public MappingForm(int parentId, int childId, String fieldName) {
 		super();

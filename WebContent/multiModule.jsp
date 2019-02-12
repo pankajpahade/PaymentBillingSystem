@@ -142,7 +142,7 @@ $(document).ready(function() {
                <select name="clgNames" id="clgNames">
                 <option>---Select College---</option>
                 <logic:iterate name="colleges" id="college">
-                  <c:set var="id"><bean:write name="college" property="parentId" format="0"/>  </c:set>  
+                  <c:set var="id"><bean:write name="college" property="parentId" format="0"/></c:set>  
                   <c:set var="college"><bean:write name="college" property="fieldName"/></c:set> 
                  <option id="${id}" value="${college}">${college}</option>
                 </logic:iterate>
