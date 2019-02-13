@@ -4,7 +4,10 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <%@ page import = "java.io.*,java.util.*" %>
 
+
  <%-- <%@page import="org.json.JSONObject"%> --%>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -95,14 +98,20 @@ $(document).ready(function() {
     $("#deptNames").children('option:gt(0)').hide(); //dept
     $("#semester").children('option:gt(0)').hide();
     $("#clgNames").change(function() {
+    	 $("#deptNames").val("");$("#branchNames").val("");$("#semester").val("");
     	 $("#deptNames").children("option:gt(0)").show(); //dept
+    	 document.getElementById("fees").value = "";
     })
     $("#deptNames").change(function() { //clg
+    	$("#branchNames").val("");$("#semester").val("");
         $("#branchNames").children('option').hide();//dept
         $("#branchNames").children("option[value^=" + $(this).val() + "]").show()//dept
+        document.getElementById("fees").value = "";
     })
     $("#branchNames").change(function() { //dept
+    	 $("#semester").val("");
     	 $("#semester").children("option:gt(0)").show();
+    	 document.getElementById("fees").value = "";
     })
     $("#semester").change(function() {
     	var x = Math.floor((Math.random() * 10000) + 1000);
@@ -213,8 +222,6 @@ $(document).ready(function() {
         <fieldset style="width: 80%  height: 80%">
            <legend>UNIVERSITY FEES</legend>
            
-           
-           
         </fieldset>
      <%--  </html:form> --%>
   </div>
@@ -223,7 +230,6 @@ $(document).ready(function() {
    		<%-- <html:form action="/master" method="POST" style="height: 80%, width:80%" styleId="masterForm"> --%>
    		   <fieldset style="width: 80%,  height: 80%">
            <legend>COLLEGE FEES</legend>
-           		
             
            </fieldset>
    		<%-- </html:form> --%>
