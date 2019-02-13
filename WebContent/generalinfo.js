@@ -48,8 +48,22 @@ function check(){
 //Function to regular expression
 
 function validatePassword() {
-    var p = document.getElementById('checkPass').value,
-        errors = [];
+    var p = document.getElementById('checkPass').value;
+    var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    //alert(re.test(p));
+    if(re.test(p))
+    	{
+    	document.getElementById('div1').innerHTML='';	
+		document.getElementById('div1').style.color="red";
+    	}
+    
+    else
+    	{
+    	document.getElementById('div1').innerHTML='Your password consist of small,capital and numbers with minimum 6 characters';	
+		document.getElementById('div1').style.color="red";
+    	}
+    
+      /*  errors = [];
     if (p.length < 8 ) {
     	document.getElementById('div1').innerHTML='Your password length minimum of 8 characters';	
 		document.getElementById('div1').style.color="red";
@@ -58,18 +72,22 @@ function validatePassword() {
     	document.getElementById('div1').innerHTML='Your password contains atleast one character';	
 		document.getElementById('div1').style.color="red";
     }
+    else 
+    	{document.getElementById('div1').innerHTML='';	
+    	return false;}
     
-    if (p.search(/[0-9]/) < 0) {
+    if (p.search(/[0-9]/i) < 0) {
     	document.getElementById('div1').innerHTML='Your password contains atleast one number';	
 		document.getElementById('div1').style.color="red";
     }
     
-    if(p.length > 8 && p.search(/[a-z]/i) > 0 && p.search(/[0-9]/) > 0)
+    if(p.length >= 8 && p.search(/[a-z]/i) > 0)
     	{
     	document.getElementById('div1').innerHTML='';	
     	return false;
-    	}
-    return true;
+    	}*/
+    
+   
 }
 
 
@@ -77,7 +95,7 @@ function validatePassword() {
 
 function checkPatternOfEmail()
 {
-      var patternMatch=/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;;	
+      var patternMatch=/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;	
       var emailId=document.getElementById('eId').value;
       
       if(!patternMatch.test(emailId))
