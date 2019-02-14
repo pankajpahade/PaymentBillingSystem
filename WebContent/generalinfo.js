@@ -159,10 +159,8 @@ function submitValidate(){
 			data: {"enrollment":enrollment, "email":email, "password":password},
 			dataType: "text",
 			success: function(response) {	
-				if (response) {
-					/*document.getElementById('gnInfoForm').submit();*/
-					/*window.location='/PaymentBillingSystem/studentlogin.jsp';*/ 
-					location.reload('studentlogin.jsp');
+				if (response) { 
+					location.href = "studentlogin.jsp";
 				} else {
 					document.getElementById("enr").innerHTML='Enrollment Number Already Registered';
 	         		document.getElementById("enr").style.color="red";
@@ -172,62 +170,6 @@ function submitValidate(){
 			error: function(error) {
 	             console.log(error);
 	        }
-		});
-		/*if(a == 1){
-			document.getElementById('gnInfoForm').submit();
-		} */    
-	}
-	
-	/*if (emptyEnroll != "" || emptyEmail != "" || emptyPass != "" || emptyConfPass != "") {
-		document.getElementById('gnInfoForm').submit();
-	}
-	
-	if (emptyEnroll == "") {
-		document.getElementById('enr').innerHTML="Please Fill this Field";
-		return false;
-	}
-	if (emptyEmail == "") {
-		document.getElementById('emailId').innerHTML="Please Fill this Field";
-		return false;
-	}
-	if (emptyPass == "") {
-		document.getElementById('div1').innerHTML="Please Fill this Field";
-		return false;
-	}
-	if (emptyConfPass == "") {
-		document.getElementById('cpass').innerHTML="Please Fill this Field";
-		return false;
-	}*/
-	
+		}); 
+	}	
 }
-
-
-
-
-//function to check enrollment number through database
-/*function checkEnrollmentNumber()
-{
-	 var enrollment = document.getElementById('enroll').value;
-	 var email = document.getElementById('eId').value;
-	 var password = document.getElementById('checkPass').value;
-     
-	 $.ajax({  		 
-		    type: "POST",  
-		    url : "./mygeneralinfo.do?action=execute",
-		    data: {"enrollment":enrollment,"email":email,"password":password},
-		    data:{"enrollment":enrollment,"email":email,"password":password},
-		    dataType: "text",
-		    success: function(response){  
-		    	if (response != "") {
-		    		alert("6588465484"+response);
-		    		document.getElementById('enr').innerHTML='';
-				} else {
-					document.getElementById('enr').innerHTML='Please enter registered enrollment number';	
-				    document.getElementById('enr').style.color="red";
-				} 
-		    },  
-		    error: function(e){  
-		    	console.log(error);
-            }  
-		  });
-}*/
