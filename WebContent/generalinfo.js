@@ -30,8 +30,9 @@ var chk = 1;
 	}*/
 
 // Function For Check Avaibility Of Enrollment Number Into Univarsity Database  
+var flag = true;
 function findEnrollment() {
-	
+	flag = true;
 	 var enrollment = document.getElementById('enroll').value;
 	 $.ajax({
          type: 'GET',
@@ -41,8 +42,9 @@ function findEnrollment() {
          	if(response == "YEsss"){
          		document.getElementById("enr").innerHTML='';       		
          	}else{
+         		flag = false;
          	    document.getElementById("enr").innerHTML='Invalide Enrollment Number';
-         		document.getElementById("enr").style.color="red";        		
+         		document.getElementById("enr").style.color="red";   
          	}
          },
          error: function(error) {
@@ -152,7 +154,8 @@ function submitValidate(){
 		var enrollment = document.getElementById('enroll').value;
 		var email = document.getElementById('eId').value;
 		var password = document.getElementById('checkPass').value;
-
+		
+		if(flag){
 		$.ajax({
 			type : "GET",
 			url : "./mygeneralinfo.do?action=execute",
@@ -170,6 +173,7 @@ function submitValidate(){
 			error: function(error) {
 	             console.log(error);
 	        }
-		}); 
+		});
+		}
 	}	
 }
