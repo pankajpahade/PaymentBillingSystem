@@ -1,5 +1,5 @@
 var chk = 1;
-function findEnrollment() {
+/*function findEnrollment() {
 	 var enrollNo = document.getElementById('enroll').value;
 	 var chekEmpty = document.getElementById('eId').value;
 	 var chekEmptyPass = document.getElementById('checkPass').value;
@@ -27,9 +27,81 @@ function findEnrollment() {
 	                console.log(error);
 	            }
 	    	  }); 
-	}
+	}*/
 
-function check(){
+// Function For Check Avaibility Of Enrollment Number Into Univarsity Database  
+function findEnrollment() {
+	
+	 var enrollment = document.getElementById('enroll').value;
+	 $.ajax({
+         type: 'GET',
+         url: 'http://10.114.37.63:8080/UniversityEnrollmentService/rest/enrollment/getdata/'+enrollment,
+         
+         success: function(response) {
+         	if(response == "YEsss"){
+         		document.getElementById("enr").innerHTML='';       		
+         	}else{
+         	    document.getElementById("enr").innerHTML='Invalide Enrollment Number';
+         		document.getElementById("enr").style.color="red";        		
+         	}
+         },
+         error: function(error) {
+             console.log(error);
+         }
+	 });
+}
+
+//function to check format of email id
+function checkPatternOfEmail(){
+	
+      var patternMatch=/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;	
+      var emailId=document.getElementById('eId').value;
+      
+      if(!patternMatch.test(emailId)){
+    	    document.getElementById('emailId').innerHTML='Please enter valid email Id';	
+		    document.getElementById('emailId').style.color="red";
+		    return false;
+        }else{
+    	    document.getElementById('emailId').innerHTML='';	 
+  		    return true;
+    	}
+}
+
+// Function For Password Suggestion 
+function instructPassword(){
+	 var password = document.getElementById('checkPass').value;
+	if (password != "") {
+		document.getElementById('div1').innerHTML="";
+	} else {
+		document.getElementById('div1').innerHTML='Password Should Consist Atleast 1 Small Alphabet, 1 Capital Alphabet and 1 Numbers With Minimum 6 Characters';	
+		document.getElementById('div1').style.color="green";
+	}	
+}
+
+// Function For Check Password Pattern
+function validatePassword() {
+	
+    var p = document.getElementById('checkPass').value;
+    var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    if(re.test(p)){
+    	document.getElementById('div1').innerHTML='';	
+    	return true;
+    }else{
+    	if (p == "") {
+    		document.getElementById('div1').innerHTML='Please fill Password';	
+    		document.getElementById('div1').style.color="red";
+    		return false;
+		} else {
+			document.getElementById('div1').innerHTML='Password Should Consist Atleast 1 Small Alphabet, 1 Capital Alphabet and 1 Numbers With Minimum 6 Characters';	
+			document.getElementById('div1').style.color="red";
+			return false;
+		}
+    }
+}
+
+// Function For Check Empty Confirm Password
+function checkConfPassword(){
+	
 	var pass = document.getElementById("checkPass").value;
 	var confPass = document.getElementById("checkConfPass").value;
 	
@@ -38,105 +110,124 @@ function check(){
 			document.getElementById('cpass').innerHTML='Please Enter Confirm Password';	
 			document.getElementById('cpass').style.color="red";
 			chk = 0;
+			return false;
 		}else{
 			document.getElementById('cpass').innerHTML='';
 			chk = 1;
+			return true;
 		}
 	}	
 }
 
-//Function to regular expression
+// Function For Submit Form After All True Validations
+function submitValidate(){
+	
+	debugger;
+	var i = document.getElementById('emptyform')
+	var emptyEnroll = document.getElementById('enroll').value;
+	var emptyEmail = document.getElementById('eId').value;
+	var emptyPass = document.getElementById('checkPass').value;
+	var emptyConfPass = document.getElementById('checkConfPass').value;
+	
+	if (emptyEnroll == "" || emptyEmail == "" || emptyPass == "" || emptyConfPass == "") {
+		//document.getElementById('emptyform').innerHTML="Please Fill this Field";
+		
+		if (emptyEnroll == "") {
+			document.getElementById('enr').innerHTML="Please Fill Enrollment Number";
+			document.getElementById('enr').style.color="red";
+		}
+		if (emptyEmail == "") {
+			document.getElementById('emailId').innerHTML="Please Fill Email";
+			document.getElementById('emailId').style.color="red";
+		}
+		if (emptyPass == "") {
+			document.getElementById('div1').innerHTML="Please Fill Password";
+			document.getElementById('div1').style.color="red";
+		}
+		if (emptyConfPass == "") {
+			document.getElementById('cpass').innerHTML="Please Fill Confirm Password";
+			document.getElementById('cpass').style.color="red";
+		}
+	} else {	
+		var enrollment = document.getElementById('enroll').value;
+		var email = document.getElementById('eId').value;
+		var password = document.getElementById('checkPass').value;
 
-function validatePassword() {
-    var p = document.getElementById('checkPass').value;
-    var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-    //alert(re.test(p));
-    if(re.test(p))
-    	{
-    	document.getElementById('div1').innerHTML='';	
-		document.getElementById('div1').style.color="red";
-    	}
-    
-    else
-    	{
-    	document.getElementById('div1').innerHTML='Your password consist of small,capital and numbers with minimum 6 characters';	
-		document.getElementById('div1').style.color="red";
-    	}
-    
-      /*  errors = [];
-    if (p.length < 8 ) {
-    	document.getElementById('div1').innerHTML='Your password length minimum of 8 characters';	
-		document.getElementById('div1').style.color="red";
-    }
-    if (p.search(/[a-z]/i) < 0) {
-    	document.getElementById('div1').innerHTML='Your password contains atleast one character';	
-		document.getElementById('div1').style.color="red";
-    }
-    else 
-    	{document.getElementById('div1').innerHTML='';	
-    	return false;}
-    
-    if (p.search(/[0-9]/i) < 0) {
-    	document.getElementById('div1').innerHTML='Your password contains atleast one number';	
-		document.getElementById('div1').style.color="red";
-    }
-    
-    if(p.length >= 8 && p.search(/[a-z]/i) > 0)
-    	{
-    	document.getElementById('div1').innerHTML='';	
-    	return false;
-    	}*/
-    
-   
+		$.ajax({
+			type : "GET",
+			url : "./mygeneralinfo.do?action=execute",
+			data: {"enrollment":enrollment, "email":email, "password":password},
+			dataType: "text",
+			success: function(response) {	
+				if (response) {
+					/*document.getElementById('gnInfoForm').submit();*/
+					/*window.location='/PaymentBillingSystem/studentlogin.jsp';*/ 
+					location.reload('studentlogin.jsp');
+				} else {
+					document.getElementById("enr").innerHTML='Enrollment Number Already Registered';
+	         		document.getElementById("enr").style.color="red";
+	         		return false;
+				}
+			},
+			error: function(error) {
+	             console.log(error);
+	        }
+		});
+		/*if(a == 1){
+			document.getElementById('gnInfoForm').submit();
+		} */    
+	}
+	
+	/*if (emptyEnroll != "" || emptyEmail != "" || emptyPass != "" || emptyConfPass != "") {
+		document.getElementById('gnInfoForm').submit();
+	}
+	
+	if (emptyEnroll == "") {
+		document.getElementById('enr').innerHTML="Please Fill this Field";
+		return false;
+	}
+	if (emptyEmail == "") {
+		document.getElementById('emailId').innerHTML="Please Fill this Field";
+		return false;
+	}
+	if (emptyPass == "") {
+		document.getElementById('div1').innerHTML="Please Fill this Field";
+		return false;
+	}
+	if (emptyConfPass == "") {
+		document.getElementById('cpass').innerHTML="Please Fill this Field";
+		return false;
+	}*/
+	
 }
 
 
-//function to check format of email id
 
-function checkPatternOfEmail()
-{
-      var patternMatch=/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;	
-      var emailId=document.getElementById('eId').value;
-      
-      if(!patternMatch.test(emailId))
-    	  {
-    	  document.getElementById('emailId').innerHTML='Please enter valid format of email Id';	
-		     document.getElementById('emailId').style.color="red";
-		     return true;
-    	  }
-      
-      else
-    	  {
-    	    document.getElementById('emailId').innerHTML='';	
-  		     
-  		     return false;
-    	  }
-
-}
 
 //function to check enrollment number through database
-function checkEnrollmentNumber()
+/*function checkEnrollmentNumber()
 {
-	 var enrollNo = document.getElementById('enroll').value;
+	 var enrollment = document.getElementById('enroll').value;
+	 var email = document.getElementById('eId').value;
+	 var password = document.getElementById('checkPass').value;
      
-	 $.ajax({  
-		 
+	 $.ajax({  		 
 		    type: "POST",  
 		    url : "./mygeneralinfo.do?action=execute",
-		   /* data: {"enrollment":enrollment,"email":email,"password":password},*/
+		    data: {"enrollment":enrollment,"email":email,"password":password},
 		    data:{"enrollment":enrollment,"email":email,"password":password},
 		    dataType: "text",
 		    success: function(response){  
-		    	alert(enrollNo);
-		    	 document.getElementById('enroll').innerHTML='';	
-	  		     
-	  		     
-		    
+		    	if (response != "") {
+		    		alert("6588465484"+response);
+		    		document.getElementById('enr').innerHTML='';
+				} else {
+					document.getElementById('enr').innerHTML='Please enter registered enrollment number';	
+				    document.getElementById('enr').style.color="red";
+				} 
 		    },  
 		    error: function(e){  
-		    	document.getElementById('emailId').innerHTML='Please enter unregistered enrollment number';	
-			     document.getElementById('emailId').style.color="red";
-			     return true;
-         }  
+		    	console.log(error);
+            }  
 		  });
-}
+}*/
