@@ -3,7 +3,6 @@ package com.payment.action;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +15,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import com.payment.db.DBConnection;
+import com.payment.db.UtilDao;
 import com.payment.form.MappingForm;
 import com.payment.form.StudentLoginForm;
 
@@ -29,6 +29,7 @@ public class StudentLoginAction extends Action {
 	DBConnection conn = null;
 	String enroll = null;
 	String pass = null;
+	UtilDao utilDao = null;
 
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest req,
@@ -37,8 +38,8 @@ public class StudentLoginAction extends Action {
 		StudentLoginForm formBean = (StudentLoginForm) form;		
 		String enrollment = formBean.getEnrollment();
 		String password = formBean.getPassword();
-		
-		ResultSet resultSet = this.checkEnrollment(enrollment);
+		utilDao = new UtilDao();
+		ResultSet resultSet = utilDao.checkEnrollment(enrollment);
 		
 		while (resultSet.next()) {
 			enroll = resultSet.getString("enrollment");
@@ -91,15 +92,5 @@ public class StudentLoginAction extends Action {
 		req.setAttribute("depts", depts);
 		
 		return mapping.findForward(status);
-	}
-	
-	public ResultSet checkEnrollment(String enrollment) throws SQLException {
-		conn = new DBConnection();
-		String sql = "select * from generalinfo where enrollment = ?";
-		Connection connection = conn.getDbConn();
-		PreparedStatement ps = connection.prepareStatement(sql);
-		ps.setString(1, enrollment);
-		ResultSet resultSet = ps.executeQuery();
-		return resultSet;
 	}
 }

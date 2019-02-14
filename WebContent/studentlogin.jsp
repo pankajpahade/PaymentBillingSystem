@@ -17,14 +17,14 @@
  <div>
    <h2 style="align:center">STUDENT LOGIN</h2>
    <html:form action="/studentlogin" method="POST" styleId="signInForm">
-    <div id="invalid"></div>
-    <div id="invalid2" style="font-size:13px;"></div>
+    <span id="invalid"></span>
+    <span id="invalid2" style="font-size:13px;"></span>
      <table>
         <tr>
           <td><label><b>Enrollment Number </b></label><span class="star">*</span></td>
         </tr>
         <tr>
-          <td><html:text styleId="chekEnroll" property="enrollment"></html:text><span id="enrollEmpty" style="font-size: 13px;"></span></td>
+          <td style="padding-bottom: 15px;"><html:text styleId="chekEnroll" property="enrollment"></html:text><span id="enrollEmpty" style="font-size: 13px;"></span></td>
         </tr>
         
         <tr>

@@ -3,9 +3,10 @@ function checkAvailable() {
 	var password = document.getElementById('checkPass').value;
 	
 	if (enrollment != "" && password != "") {
+		alert("kkkjkhughg");
 		$.ajax({
 			type : "GET",
-			url : "./studentlogin.do?action=execute",
+			url : "./studentlogin.do?action=execute"	,
 			data: {"enrollment":enrollment, "password":password},
 			dataType: "text",
 			success: function(response) {			
@@ -26,9 +27,13 @@ function checkAvailable() {
 			document.getElementById('invalid2').style.color="red";
 		} else {
 			if (enrollment == "") {
+				document.getElementById('invalid2').innerHTML = "";
+				document.getElementById('passEmpty').innerHTML = "";
 				document.getElementById('enrollEmpty').innerHTML = "Please fill Enrollment Number";
 				document.getElementById('enrollEmpty').style.color="red";
 			}else{
+				document.getElementById('invalid2').innerHTML = "";
+				document.getElementById('enrollEmpty').innerHTML = "";
 				document.getElementById('passEmpty').innerHTML = "Please fill Password";
 				document.getElementById('passEmpty').style.color="red";
 			}

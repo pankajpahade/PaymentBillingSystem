@@ -20,4 +20,5 @@ public class ForgetPasswordForm extends ActionForm {
 		this.enrollment = enrollment;
 	}
 
+	
 }

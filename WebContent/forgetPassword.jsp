@@ -6,7 +6,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script> -->
 <link rel="stylesheet" type="text/css" href="forgetPassword.css">
 <script type="text/javascript" src="forgetPassword.js"></script>
 </head>
@@ -24,13 +25,14 @@
     <span id="enrollFill"></span>
      <table>
       <tr>
-       <td><input id="enrllText" type="text" name="enrollment"/><div id="checkAvailable"></div></td>
-       <td><html:button styleId="enrollBtn" property="subBtn" >SUBMIT</html:button></td>
+       <td><html:text styleId="enrllText" property="enrollment"></html:text></td>
+       <td><html:button styleId="enrollBtn" property="sub" onclick="mngform()">SUBMIT</html:button></td>
       </tr>
      </table>    
     </html:form>
+    <br> <br>
+    <span id="mailSuccess"></span>
   </div>
  </div>
- 
 </body>
 </html>

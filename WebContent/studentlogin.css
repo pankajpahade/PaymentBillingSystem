@@ -24,9 +24,8 @@ h1{
 
 table{
 	border: medium;
-	padding: 20px;	
 	padding-left: 15px;
-	padding-right: 30px;
+	padding-top: 20px;
 }
 
 form{
@@ -60,7 +59,13 @@ tr td{
 	padding-left:3px; 
 	width:65px; 
 	height:30px;
-	font-weight: bold;	
+	border-radius: 5px; 
+	color:white;
+	font-size:14px;
+	font-stretch:extra-expanded;
+	font-weight:bold;
+	border-style:hidden;
+	background-color: #f73136;
 }
 
 .star{
@@ -68,7 +73,13 @@ tr td{
 }
 
 #subBtn{
-	font-weight: bold;
+	border-radius: 5px; 
+	color:white;
+	font-size:14px;
+	font-stretch:extra-expanded;
+	font-weight:bold;
+	border-style:hidden;
+	background-color: #4CAF50;
 }
 
 
